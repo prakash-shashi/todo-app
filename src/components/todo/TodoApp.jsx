@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
-import {BrowserRouter as Router,Route} from 'react-router-dom'
+import {BrowserRouter as Router,Route,Switch} from 'react-router-dom'
 class TodoApp extends Component{
     render(){
         return (
             <div className="TodoApp">
                 <Router>
+                    <>
+                    <Switch>
                     <Route path="/" exact component={LoginComponent}/>   
                     <Route path="/Login" component={LoginComponent}/>
-                    <Route path="/Welcome" component={WelcomeComponent}/>
+                    <Route path="/Welcome/:name" component={WelcomeComponent}/>
+                    <Route component={ErrorComponet}/>
+                    </Switch>
+                    </>
                 </Router>
                 {/* <LoginComponent />
                 <WelcomeComponent /> */}
@@ -65,7 +70,7 @@ class LoginComponent extends Component {
 
     loginClicked(event){
         if(this.state.username==='shashi211' && this.state.password==='dummy'){
-            this.props.history.push("/welcome")
+            this.props.history.push(`/welcome/${this.state.username}`)
             this.setState({showSuccessMessage:true})
             this.setState({hasLoginFailed:false})
         }
@@ -81,10 +86,18 @@ class WelcomeComponent extends Component{
     render(){
         return(
             <div>
-                Welcome Shashi211
+                Welcome {this.props.match.params.name}
             </div>
         )
     }
+}
+
+function ErrorComponet(){
+        return(
+            <div>
+                I don't know what to do please contact ADSupport at abcd-efgh-ijkl-mnop
+            </div>
+        )
 }
 
 function ShowInvalidCredentials(props) {
