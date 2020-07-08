@@ -4,7 +4,8 @@ import SecondComponent from './components/examples/SecondComponet'
 import ThirdComponent from './components/examples/ThirdComponent'
 import Counter from './components/counter/Counter'
 import TodoApp from './components/todo/TodoApp'
-import './App.css';
+import './App.css'
+import './bootstrap.css'
 import { render } from '@testing-library/react';
  
 class App extends Component {
